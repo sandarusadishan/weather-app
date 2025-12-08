@@ -1,0 +1,40 @@
+name: weather_app
+description: "Modern Glassmorphism Weather App"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Libraries
+  provider: ^6.0.0
+  http: ^1.1.0
+  intl: ^0.18.1
+  shared_preferences: ^2.2.0
+  google_fonts: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "lib/assets/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "lib/assets/icon.png"
+    background_color: "#hex_code"
+    theme_color: "#hex_code"
+
+flutter:
+  uses-material-design: true # මේ line එකට පස්සේ
+  assets: # assets කියන එක uses-material-design එක්ක එකම level එකේ තියෙන්න ඕනේ
+    - lib/assets/weather_icons/ # මේ path එක ඊට යටින් indent වෙන්න ඕනේ

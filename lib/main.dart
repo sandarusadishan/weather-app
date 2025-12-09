@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'providers/weather_provider.dart';
 import 'screens/welcome_screen.dart';
+import 'utils/app_theme.dart';
 
 void main() {
   runApp(
@@ -24,9 +25,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Weather App',
       theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(),
-        scaffoldBackgroundColor: const Color(0xFF1F1D47),
-        primaryColor: const Color(0xFF48319D),
+        textTheme: GoogleFonts.outfitTextTheme(),
+        scaffoldBackgroundColor: AppTheme.secondaryColor,
+        primaryColor: AppTheme.primaryColor,
         useMaterial3: true,
       ),
       home: const WelcomeScreen(),

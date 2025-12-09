@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../utils/app_theme.dart';
 
 class GlassContainer extends StatelessWidget {
   final Widget child;
@@ -20,7 +21,7 @@ class GlassContainer extends StatelessWidget {
     this.padding,
     this.margin,
     this.color = Colors.white,
-    this.opacity = 0.5, // Increased opacity for Light Mode (glass needs to be visible)
+    this.opacity = 0.5,
   });
 
   @override
@@ -32,14 +33,14 @@ class GlassContainer extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8), // Reduced blur for performance
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
           child: Container(
             padding: padding ?? const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: color.withOpacity(opacity),
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(
-                color: Colors.white.withOpacity(0.6), // Stronger border
+                color: AppTheme.primaryColor.withOpacity(0.5), // Electric Blue Border (Restored)
                 width: 1.5,
               ),
               gradient: LinearGradient(

@@ -17,105 +17,124 @@ class WelcomeScreen extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // Background Orbs/Glows for effect
-            Positioned(
-              top: -100,
-              left: -100,
-              child: Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppTheme.primaryColor.withOpacity(0.5),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppTheme.primaryColor.withOpacity(0.5),
-                      blurRadius: 100,
-                      spreadRadius: 50,
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 50,
-              right: -50,
-              child: Container(
-                width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppTheme.accentColor.withOpacity(0.4),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppTheme.accentColor.withOpacity(0.4),
-                      blurRadius: 100,
-                      spreadRadius: 50,
-                    )
-                  ],
-                ),
-              ),
-            ),
             
             // Main Content
             SafeArea(
               child: ResponsiveCenter(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    // Big Weather Icon/Image
-                    const Icon(Icons.cloud_queue_rounded, size: 150, color: Colors.white),
-                    // Or use an asset if available: Image.asset('lib/assets/weather_icons/sun_heavy_rain.png', height: 250),
-                    
-                    const SizedBox(height: 40),
-                    
-                    GlassContainer(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      
+                      // Hero Section
+                      Container(
+                        height: 250,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Colors.white.withOpacity(0.9),
+                              Colors.white.withOpacity(0.4),
+                            ],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.primaryColor.withOpacity(0.2),
+                              blurRadius: 50,
+                              offset: const Offset(0, 20),
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.wb_sunny_rounded, // Premium Sun Icon
+                          size: 140,
+                          color: AppTheme.accentColor,
+                        ),
+                      ),
+                      
+                      const SizedBox(height: 60),
+                      
+                      // Text Section
+                      Column(
                         children: [
-                           Text("Weather", style: AppTheme.displayLarge),
-                           Text("ForeCasts", style: AppTheme.displayLarge.copyWith(color: AppTheme.accentColor)),
-                           const SizedBox(height: 20),
-                           Text(
-                            "Never get caught in the rain again. Stay ahead with accurate weather updates.", 
-                            textAlign: TextAlign.center,
-                            style: AppTheme.bodyLarge,
+                          Text(
+                            "Discover the",
+                            style: AppTheme.titleLarge.copyWith(
+                              color: AppTheme.mediumText, 
+                              fontSize: 24,
+                              letterSpacing: 1.2
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            "Weather",
+                            style: AppTheme.displayLarge.copyWith(
+                              color: AppTheme.primaryColor,
+                              fontSize: 56,
+                              height: 1.0,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              "Plan your day with accurate forecasts and real-time updates.",
+                              textAlign: TextAlign.center,
+                              style: AppTheme.bodyLarge,
+                            ),
                           ),
                         ],
                       ),
-                    ),
-
-                    const Spacer(),
-                    
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 50.0),
-                      child: GestureDetector(
-                        onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomeScreen())),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 40),
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFDDB130),
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color(0xFFDDB130).withOpacity(0.5),
-                                blurRadius: 20,
-                                offset: const Offset(0, 5),
-                              )
-                            ],
+            
+                      const Spacer(),
+            
+                      // Call to Action
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 60),
+                        child: GestureDetector(
+                          onTap: () => Navigator.pushReplacement(
+                            context, 
+                            MaterialPageRoute(builder: (_) => const HomeScreen())
                           ),
-                          child: const Center(
-                            child: Text(
-                              "Get Started", 
-                              style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold)
+                          child: Container(
+                            height: 70,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: AppTheme.primaryColor,
+                              borderRadius: BorderRadius.circular(35),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppTheme.primaryColor.withOpacity(0.4),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 8),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Get Started",
+                                  style: GoogleFonts.outfit(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                const Icon(Icons.arrow_forward_rounded, color: Colors.white),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

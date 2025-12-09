@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/weather_provider.dart';
-import '../utils/app_theme.dart';
-import '../widgets/glass_container.dart';
-import '../widgets/responsive_center.dart';
+import '../utils/app_theme.dart'; // Ensure this file exists
+import '../widgets/glass_container.dart'; // Ensure this file exists
+import '../widgets/responsive_center.dart'; // Ensure this file exists
 import 'search_screen.dart';
 import 'favorites_screen.dart';
 
@@ -34,103 +34,28 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.grid_view_rounded, color: Colors.white),
+          icon: const Icon(Icons.grid_view_rounded, color: AppTheme.darkText),
           onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const FavoritesScreen())),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search_rounded, color: Colors.white),
+            icon: const Icon(Icons.search_rounded, color: AppTheme.darkText),
             onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SearchScreen())),
           ),
         ],
-        title: Text(weatherProv.weather?.cityName ?? "Weather", style: AppTheme.titleLarge.copyWith(fontSize: 20)),
-        centerTitle: true,
-      ),
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../providers/weather_provider.dart';
-import '../utils/app_theme.dart';
-import '../widgets/glass_container.dart';
-import '../widgets/responsive_center.dart';
-import 'search_screen.dart';
-import 'favorites_screen.dart';
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<WeatherProvider>(context, listen: false).fetchWeather("Colombo");
-      Provider.of<WeatherProvider>(context, listen: false).loadFavorites();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final weatherProv = Provider.of<WeatherProvider>(context);
-
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.grid_view_rounded, color: Colors.white),
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const FavoritesScreen())),
+        title: Text(
+          weatherProv.weather?.cityName ?? "Weather", 
+          style: AppTheme.titleLarge.copyWith(fontSize: 20)
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search_rounded, color: Colors.white),
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SearchScreen())),
-          ),
-        ],
-        title: Text(weatherProv.weather?.cityName ?? "Weather", style: AppTheme.titleLarge.copyWith(fontSize: 20)),
         centerTitle: true,
       ),
       body: Container(
         decoration: const BoxDecoration(
-          gradient: AppTheme.backgroundGradient,
+          // Ensure AppTheme has backgroundGradient defined
+          gradient: AppTheme.backgroundGradient, 
         ),
         child: Stack(
           children: [
-             // Soft Background Orbs (Daylight Style)
-            Positioned(
-              top: -80,
-              right: -50,
-              child: Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: const Color(0xFFFFD700).withOpacity(0.3), // Soft Sun Yellow
-                  boxShadow: [
-                    BoxShadow(color: const Color(0xFFFFD700).withOpacity(0.3), blurRadius: 100, spreadRadius: 50)
-                  ],
-                ),
-              ),
-            ),
-             Positioned(
-              bottom: 100,
-              left: -50,
-              child: Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: const Color(0xFF87CEEB).withOpacity(0.3), // Sky Blue
-                  boxShadow: [
-                    BoxShadow(color: const Color(0xFF87CEEB).withOpacity(0.3), blurRadius: 100, spreadRadius: 30)
-                  ],
-                ),
-              ),
-            ),
 
             SafeArea(
               child: RefreshIndicator(
@@ -147,13 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         : ResponsiveCenter(
                             child: SingleChildScrollView(
                               physics: const BouncingScrollPhysics(),
-                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 100), 
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20), 
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   const SizedBox(height: 10),
                                   
-                                  // Weather Icon
+                                  // Weather Icon Animation
                                   TweenAnimationBuilder(
                                     tween: Tween<double>(begin: 0, end: 1),
                                     duration: const Duration(seconds: 1),
@@ -171,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Stack(
                                         alignment: Alignment.center,
                                         children: [
-                                          // White Glow behind the image for pop
+                                          // White Glow behind the image
                                           Container(
                                             width: 180, height: 180,
                                             decoration: BoxDecoration(
@@ -223,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                   const SizedBox(height: 30),
 
-                                  // Hourly Forecast Section (GlassContainer for the block is fine)
+                                  // Hourly Forecast Section
                                   GlassContainer(
                                     width: double.infinity,
                                     padding: const EdgeInsets.all(20),
@@ -258,6 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ],
                                     ),
                                   ),
+                                  const SizedBox(height: 120), // Spacer for FAB
                                 ],
                               ),
                             ),
@@ -274,8 +200,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Added to Favorites!")));
           }
         },
-        backgroundColor: AppTheme.accentColor,
-        child: const Icon(Icons.favorite, color: Colors.white),
+        backgroundColor: AppTheme.darkText,
+        child: const Icon(Icons.favorite, color: Colors.red),
       ),
     );
   }
@@ -299,21 +225,21 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // OPTIMIZED: Removed Blur/Glass effect from ListItems for smoothness
   Widget _buildHourlyItem(String time, String iconCode, String temp, {bool isActive = false}) {
     return Container(
       margin: const EdgeInsets.only(right: 15),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      decoration: isActive 
+          decoration: isActive 
         ? BoxDecoration(
             color: AppTheme.primaryColor,
             borderRadius: BorderRadius.circular(20),
             boxShadow: [BoxShadow(color: AppTheme.primaryColor.withOpacity(0.4), blurRadius: 10, offset: const Offset(0, 5))],
+            border: Border.all(color: Colors.white.withOpacity(0.5), width: 1.5),
           )
         : BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.white.withOpacity(0.5), // Pure color transparency, NO BLUR
-            border: Border.all(color: Colors.white),
+            color: Colors.white.withOpacity(0.3),
+            border: Border.all(color: AppTheme.primaryColor.withOpacity(0.5), width: 1.5), // Electric Blue Border (Restored)
           ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

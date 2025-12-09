@@ -17,7 +17,7 @@ class FavoritesScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: AppTheme.darkText),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -26,21 +26,6 @@ class FavoritesScreen extends StatelessWidget {
         child: Stack(
           children: [
              // Background Orb
-            Positioned(
-              top: 100,
-              left: -100,
-              child: Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppTheme.accentColor.withOpacity(0.2),
-                  boxShadow: [
-                    BoxShadow(color: AppTheme.accentColor.withOpacity(0.2), blurRadius: 100, spreadRadius: 50)
-                  ],
-                ),
-              ),
-            ),
             
             Consumer<WeatherProvider>(
               builder: (context, provider, child) {
@@ -73,7 +58,7 @@ class FavoritesScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                             child: ListTile(
                               contentPadding: EdgeInsets.zero,
-                              title: Text(city, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                              title: Text(city, style: AppTheme.bodyLarge.copyWith(fontWeight: FontWeight.bold)),
                               trailing: const Icon(Icons.arrow_forward_ios, color: AppTheme.accentColor, size: 16),
                               onTap: () {
                                 provider.fetchWeather(city);

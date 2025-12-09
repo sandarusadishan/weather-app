@@ -17,7 +17,7 @@ class SearchScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white)),
+        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back_ios_new, color: AppTheme.darkText)),
         title: Text("Search Location", style: AppTheme.titleLarge.copyWith(fontSize: 20)),
         centerTitle: true,
       ),
@@ -36,12 +36,12 @@ class SearchScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: TextField(
                       controller: cityController,
-                      style: const TextStyle(color: Colors.white, fontSize: 18),
+                      style: AppTheme.bodyLarge,
                       decoration: InputDecoration(
                         hintText: "Enter City Name...",
-                        hintStyle: const TextStyle(color: Colors.white54),
+                        hintStyle: AppTheme.bodyMedium,
                         border: InputBorder.none,
-                        icon: const Icon(Icons.search, color: Colors.white54),
+                        icon: const Icon(Icons.search, color: AppTheme.darkText),
                         suffixIcon: IconButton(
                           icon: const Icon(Icons.arrow_forward_ios, color: AppTheme.accentColor, size: 20),
                           onPressed: () {
@@ -62,7 +62,7 @@ class SearchScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   // Add some suggestion chips or recent searches if logic existed, but for now just the design
-                  const Text("Popular Cities", style: TextStyle(color: Colors.white54, fontSize: 14)),
+                  Text("Popular Cities", style: AppTheme.bodyMedium),
                   const SizedBox(height: 20),
                   Wrap(
                     spacing: 10,
@@ -93,7 +93,7 @@ class SearchScreen extends StatelessWidget {
       child: GlassContainer(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         borderRadius: 30,
-        child: Text(city, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        child: Text(city, style: AppTheme.bodyMedium.copyWith(fontWeight: FontWeight.bold)),
       ),
     );
   }

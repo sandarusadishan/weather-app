@@ -27,7 +27,7 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "lib/assets/icon.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
+  min_sdk_android: 21 
   web:
     generate: true
     image_path: "lib/assets/icon.png"
@@ -35,6 +35,6 @@ flutter_icons:
     theme_color: "#hex_code"
 
 flutter:
-  uses-material-design: true # මේ line එකට පස්සේ
-  assets: # assets කියන එක uses-material-design එක්ක එකම level එකේ තියෙන්න ඕනේ
-    - lib/assets/weather_icons/ # මේ path එක ඊට යටින් indent වෙන්න ඕනේ
+  uses-material-design: true
+  assets:
+    - lib/assets/weather_icons/

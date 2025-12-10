@@ -59,7 +59,15 @@ class FavoritesScreen extends StatelessWidget {
                             child: ListTile(
                               contentPadding: EdgeInsets.zero,
                               title: Text(city, style: AppTheme.bodyLarge.copyWith(fontWeight: FontWeight.bold)),
-                              trailing: const Icon(Icons.arrow_forward_ios, color: AppTheme.accentColor, size: 16),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete_outline, color: Colors.deepOrangeAccent),
+                                onPressed: () {
+                                   provider.removeFavorite(city);
+                                   ScaffoldMessenger.of(context).showSnackBar(
+                                     SnackBar(content: Text("$city removed from favorites")),
+                                   );
+                                },
+                              ),
                               onTap: () {
                                 provider.fetchWeather(city);
                                 Navigator.pop(context);

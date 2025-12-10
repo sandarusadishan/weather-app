@@ -5,7 +5,8 @@ import '../utils/constants.dart';
 
 class WeatherService {
   Future<Weather> getWeather(String city) async {
-    final url = Uri.parse('${Constants.baseUrl}/weather?q=$city&appid=${Constants.apiKey}&units=metric');
+    final url = Uri.parse('${Constants.baseUrl}/
+    weather?q=$city&appid=${Constants.apiKey}&units=metric');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
